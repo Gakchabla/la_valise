@@ -8,7 +8,7 @@ export default function Header({ pageTitle }) {
       <Link to="/">
         <Icon />
       </Link>
-      <h1 className="text-4xl pl-2">{pageTitle}</h1>
+      <h1 className="text-4xl pl-2 text-slate-900">{pageTitle}</h1>
     </header>
   );
 }

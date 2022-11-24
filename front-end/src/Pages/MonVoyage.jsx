@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Footer from "../Components/Footer";
 import Formulaire from "../Components/Formulaire";
 
 export default function MonVoyage({ setPageTitle, setFooterOpen }) {

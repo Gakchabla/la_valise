@@ -17,8 +17,8 @@ export default function MaValise({ setPageTitle, setFooterOpen }) {
 
   return (
     <div>
-      <legend className="text-lg font-medium self-center text-gray-900">
-        Votre Valise:
+      <legend className="text-2xl font-medium self-center text-gray-900">
+        🧳 Votre Valise:
       </legend>
       <legend>Produits d'hygiène:</legend>
       <CheckListResult
