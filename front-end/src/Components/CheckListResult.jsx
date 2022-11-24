@@ -10,14 +10,17 @@ const AllYouNeed = [
 
 export default function CheckListResult() {
   return (
-    <fieldset>
-      <div>
-        <legend className="text-lg font-medium text-gray-900">
+    <fieldset className="flex h-screen justify-center">
+      <div className="h-full flex flex-col">
+        <legend className="text-lg font-medium self-center text-gray-900">
           Votre valise !
         </legend>
-        <div className="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
+        <div className="flex flex-col ml-48 my-8 divide-y h-full w-96 border-gray">
           {AllYouNeed.map((val) => (
-            <div key={val.id} className="relative flex items-start py-4">
+            <div
+              key={val.id}
+              className="flex justify-center   w-1/2 items-start py-4"
+            >
               <div className="min-w-0 flex-1 text-sm">
                 <label
                   htmlFor={val.id}
@@ -26,7 +29,7 @@ export default function CheckListResult() {
                   {val.name}
                 </label>
               </div>
-              <div className="ml-3 flex h-5 items-center">
+              <div className="ml-3 flex h-7 items-center">
                 <input
                   id={val.id}
                   name={val.name}
