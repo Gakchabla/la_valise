@@ -1,8 +1,10 @@
-import React from "react";
-import Header from "../components/Header";
+import React, { useEffect } from "react";
 
-function Home() {
-  return <div className="h-screen"></div>;
+function Home({ setPageTitle, setFooterOpen }) {
+  useEffect(() => setPageTitle("La Valise"));
+  useEffect(() => setFooterOpen(true));
+
+  return <div></div>;
 }
 
 export default Home;
