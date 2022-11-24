@@ -7,5 +7,10 @@ export default function MonVoyage({ setPageTitle, setFooterOpen }) {
     setFooterOpen(false);
   });
 
-  return <div>MonVoyage</div>;
+export default function MonVoyage() {
+  return (
+    <div className="h-screen flex-col">
+      <Formulaire />
+    </div>
+  );
 }
