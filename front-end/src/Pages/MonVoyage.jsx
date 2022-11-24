@@ -1,5 +1,5 @@
 import React from "react";
-import Formulaire from "../components/Formulaire";
+import Formulaire from "../Components/Formulaire";
 
 export default function MonVoyage() {
   return (
