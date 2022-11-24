@@ -59,7 +59,7 @@ function Formulaire() {
             className="border border-black rounded-md h-10"
             name="destination">
             {destinations.map((el) => {
-              return <option value="value">{el.Destination}</option>;
+              return <option value="value">{el.city}</option>;
             })}
           </select>
         </div>
