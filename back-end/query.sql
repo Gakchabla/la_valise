@@ -73,7 +73,8 @@ INSERT INTO items (itemname, essentiel, temperature, meteo, montagneux, plage, d
 
 CREATE TABLE destinations 
 (
-    Destination	varchar(50),
+	id INT NOT NULL AUTO_INCREMENT,
+    city	varchar(50),
     Chaud 	TINYINT(1),
     Froid	TINYINT(1),
     Pluvieux	TINYINT(1),
@@ -82,7 +83,8 @@ CREATE TABLE destinations
     plage	TINYINT(1),
     désert	TINYINT(1),
     urbainRural	varchar(10),
-    backpackChill	varchar(10)
+    backpackChill	varchar(10),
+    PRIMARY KEY (id)
 );
 
 INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Maldive', 1, 0, 0, 1, 0, 1, 0, 'rural', 'chill');
