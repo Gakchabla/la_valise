@@ -21,4 +21,8 @@ db.getConnection()
     console.error(err);
   });
 
+//Routes GET
+
 app.get("/", controller.welcome);
+app.get("/api/destinations", controller.getDestination);
+app.get("/api/items", controller.getItems);
