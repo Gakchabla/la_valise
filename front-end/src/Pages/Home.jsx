@@ -1,5 +1,5 @@
 import React from "react";
-import CheckListResult from "../Components/CheckListResult";
+
 import Header from "../Components/Header";
 
 function Home() {
@@ -7,7 +7,6 @@ function Home() {
     <div>
       <Header />
 
-      <CheckListResult />
       <h2>Branche dev</h2>
     </div>
   );
