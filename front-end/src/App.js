@@ -18,6 +18,7 @@ function App() {
       <Route path="/monvoyage" element={ <MonVoyage setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} />} />
       <Route path="/mavalise" element={ <MaValise setPageTitle={setPageTitle} setFooterOpen={setFooterOpen}/>} />
      </Routes>
+     <div classname="h-20"></div>
      <Footer footerOpen={footerOpen} setFooterOpen={setFooterOpen} />
     </div>
   );

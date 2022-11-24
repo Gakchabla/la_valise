@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Footer from "../Components/Footer";
+import CheckListResult from "../Components/CheckListResult";
 
 export default function MaValise({ setPageTitle, setFooterOpen }) {
   const [contenuValise, setContenuValise] = useState([]);
@@ -17,32 +17,21 @@ export default function MaValise({ setPageTitle, setFooterOpen }) {
 
   return (
     <div>
-      <ul>
-        Produits d'Hygiène:
-        {contenuValise
-          .filter((item) => item.categorie === "hygiene")
-          .map((item) => (
-            <li key={item.id}>{item.itemname}</li>
-          ))}
-      </ul>
-      <br />
-      <ul>
-        Vêtements:
-        {contenuValise
-          .filter((item) => item.categorie === "vetement")
-          .map((item) => (
-            <li key={item.id}>{item.itemname}</li>
-          ))}
-      </ul>
-      <br />
-      <ul>
-        Autre:
-        {contenuValise
-          .filter((item) => item.categorie === "autre")
-          .map((item) => (
-            <li key={item.id}>{item.itemname}</li>
-          ))}
-      </ul>
+      <legend className="text-lg font-medium self-center text-gray-900">
+        Votre Valise:
+      </legend>
+      <legend>Produits d'hygiène:</legend>
+      <CheckListResult
+        items={contenuValise.filter((item) => item.categorie === "hygiene")}
+      />
+      <legend>Vêtements:</legend>
+      <CheckListResult
+        items={contenuValise.filter((item) => item.categorie === "vetement")}
+      />
+      <legend>Autres:</legend>
+      <CheckListResult
+        items={contenuValise.filter((item) => item.categorie === "autre")}
+      />
     </div>
   );
 }

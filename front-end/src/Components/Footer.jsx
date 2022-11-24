@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Footer({ footerOpen }) {
   return (
     <footer
-      className={`shadow-footer bg-gradient-to-b from-primary to-emerald-900 absolute bottom-0 items-center  w-screen flex justify-center ease-out duration-300 ${
+      className={`shadow-footer bg-gradient-to-b from-primary to-emerald-900 fixed bottom-0 items-center  w-screen flex justify-center ease-out duration-300 ${
         footerOpen ? "h-[35vh]" : "h-20"
       } `}
     >
