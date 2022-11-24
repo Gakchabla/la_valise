@@ -1,9 +1,7 @@
-function Header() {
+import React from "react";
+
+export default function Header() {
   return (
-    <div className="h-1/5 flex justify-center">
-      <h1>La Valise</h1>
-    </div>
+    <header className="w-screen h-28 bg-primary border-b-[3px] border-black"></header>
   );
 }
-
-export default Header;
