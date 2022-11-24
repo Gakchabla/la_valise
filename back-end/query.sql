@@ -10,11 +10,10 @@ CREATE TABLE items
     desert	BOOL NOT NULL,
     urbainourural	VARCHAR(10) NOT NULL,
     backpackouchill	VARCHAR(10) NOT NULL,
-    saison VARCHAR(10),
     univers	VARCHAR(10) NOT NULL,
     image	varchar(100) NULL,
     commentaire	varchar(100) NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY ('id')
 );
 
 
@@ -69,27 +68,70 @@ INSERT INTO items (itemname, essentiel, temperature, meteo, montagneux, plage, d
 INSERT INTO items (itemname, essentiel, temperature, meteo, montagneux, plage, desert, urbainourural, backpackouchill, saison, univers, image, commentaire) VALUES ('Tenue de soirée', '0', 'both', 'both', '0', '1', '0', 'urbain', 'chill', '', 'reel', '', '');
 INSERT INTO items (itemname, essentiel, temperature, meteo, montagneux, plage, desert, urbainourural, backpackouchill, saison, univers, image, commentaire) VALUES ('Cosmétiques', '0', 'both', 'both', '0', '1', '0', 'urbain', 'chill', '', 'reel', '', '');
 
+ALTER TABLE items
+add categorie varchar(100) null;
+
+ALTER TABLE items
+add sexe VARCHAR(100);
+
+INSERT INTO items (itemname, essentiel, temperature, meteo, montagneux, plage, desert, urbainourural, backpackouchill, saison, univers, image, commentaire, categorie, sexe) VALUES ('Crème Solaire', '0', 'both', 'soleil', '1', '1', '1', 'both', 'both', '', 'reel', '', '','hygiene')
 
 
-CREATE TABLE destinations 
-(
-	id INT NOT NULL AUTO_INCREMENT,
-    city	varchar(50),
-    Chaud 	TINYINT(1),
-    Froid	TINYINT(1),
-    Pluvieux	TINYINT(1),
-    Ensoleillé	TINYINT(1),
-    montagneux	TINYINT(1),
-    plage	TINYINT(1),
-    désert	TINYINT(1),
-    urbainRural	varchar(10),
-    backpackChill	varchar(10),
-    PRIMARY KEY (id)
-);
 
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Maldive', 1, 0, 0, 1, 0, 1, 0, 'rural', 'chill');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('New York(hiver)', 0, 1, 1, 1, 0, 0, 0, 'urbain', 'chill');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('New York(été)', 1, 0, 1, 1, 0, 1, 0, 'urbain', 'chill');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Himalaya', 0, 1, 1, 1, 1, 0, 0, 'rural', 'backpack');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Sahara', 1, 0, 0, 1, 0, 0, 1, 'rural', 'backpack');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Laponie', 0, 1, 1, 1, 1, 0, 0, 'rural', 'backpack');
+
+
+UPDATE items SET categorie = 'hygiene' WHERE id = 1;
+UPDATE items SET categorie = 'hygiene' WHERE id = 2;
+UPDATE items SET categorie = 'hygiene' WHERE id = 3;
+UPDATE items SET categorie = 'hygiene' WHERE id = 4;
+UPDATE items SET categorie = 'hygiene' WHERE id = 5;
+UPDATE items SET categorie = 'hygiene' WHERE id = 50;
+UPDATE items SET categorie = 'hygiene' WHERE id = 48;
+UPDATE items SET categorie = 'hygiene' WHERE id = 45;
+
+UPDATE items SET categorie = 'vetement' WHERE id = 6;
+UPDATE items SET categorie = 'vetement' WHERE id = 7;
+UPDATE items SET categorie = 'vetement' WHERE id = 8;
+UPDATE items SET categorie = 'vetement' WHERE id = 9;
+UPDATE items SET categorie = 'vetement' WHERE id = 10;
+UPDATE items SET categorie = 'vetement' WHERE id = 11;
+UPDATE items SET categorie = 'vetement' WHERE id = 12;
+UPDATE items SET categorie = 'vetement' WHERE id = 13;
+UPDATE items SET categorie = 'vetement' WHERE id = 14;
+UPDATE items SET categorie = 'vetement' WHERE id = 15;
+UPDATE items SET categorie = 'vetement' WHERE id = 16;
+UPDATE items SET categorie = 'vetement' WHERE id = 17;
+UPDATE items SET categorie = 'vetement' WHERE id = 18;
+UPDATE items SET categorie = 'vetement' WHERE id = 19;
+UPDATE items SET categorie = 'vetement' WHERE id = 20;
+UPDATE items SET categorie = 'vetement' WHERE id = 21;
+UPDATE items SET categorie = 'vetement' WHERE id = 22;
+UPDATE items SET categorie = 'vetement' WHERE id = 23;
+UPDATE items SET categorie = 'vetement' WHERE id = 24;
+UPDATE items SET categorie = 'vetement' WHERE id = 25;
+UPDATE items SET categorie = 'vetement' WHERE id = 26;
+UPDATE items SET categorie = 'vetement' WHERE id = 27;
+UPDATE items SET categorie = 'vetement' WHERE id = 28;
+UPDATE items SET categorie = 'vetement' WHERE id = 29;
+UPDATE items SET categorie = 'vetement' WHERE id = 34;
+UPDATE items SET categorie = 'vetement' WHERE id = 49;
+
+
+UPDATE items SET categorie = 'autre' WHERE id = 30;
+UPDATE items SET categorie = 'autre' WHERE id = 31;
+UPDATE items SET categorie = 'autre' WHERE id = 32;
+UPDATE items SET categorie = 'autre' WHERE id = 33;
+UPDATE items SET categorie = 'autre' WHERE id = 34;
+UPDATE items SET categorie = 'autre' WHERE id = 35;
+UPDATE items SET categorie = 'autre' WHERE id = 36;
+UPDATE items SET categorie = 'autre' WHERE id = 37;
+UPDATE items SET categorie = 'autre' WHERE id = 38;
+UPDATE items SET categorie = 'autre' WHERE id = 39;
+UPDATE items SET categorie = 'autre' WHERE id = 40;
+UPDATE items SET categorie = 'autre' WHERE id = 41;
+UPDATE items SET categorie = 'autre' WHERE id = 42;
+UPDATE items SET categorie = 'autre' WHERE id = 43;
+UPDATE items SET categorie = 'autre' WHERE id = 44;
+UPDATE items SET categorie = 'autre' WHERE id = 45;
+UPDATE items SET categorie = 'autre' WHERE id = 46;
+UPDATE items SET categorie = 'autre' WHERE id = 47;
