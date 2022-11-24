@@ -16,7 +16,7 @@ app.listen(port, () => {
 
 //connect db
 db.getConnection()
-  .then()
+  .then(console.log("DB connected"))
   .catch((err) => {
     console.error(err);
   });
