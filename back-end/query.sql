@@ -73,21 +73,23 @@ INSERT INTO items (itemname, essentiel, temperature, meteo, montagneux, plage, d
 
 CREATE TABLE destinations 
 (
-    Destination	varchar(50),
-    Chaud 	BOOL,
-    Froid	BOOL,
-    Pluvieux	BOOL,
-    Ensoleillé	BOOL,
-    montagneux	BOOL,
-    plage	BOOL,
-    désert	BOOL,
+	id INT NOT NULL AUTO_INCREMENT,
+    city	varchar(50),
+    Chaud 	TINYINT(1),
+    Froid	TINYINT(1),
+    Pluvieux	TINYINT(1),
+    Ensoleillé	TINYINT(1),
+    montagneux	TINYINT(1),
+    plage	TINYINT(1),
+    désert	TINYINT(1),
     urbainRural	varchar(10),
-    backpackChill	varchar(10)
+    backpackChill	varchar(10),
+    PRIMARY KEY (id)
 );
 
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Maldive', 'VRAI', 'FAUX', 'FAUX', 'VRAI', 'FAUX', 'VRAI', 'FAUX', 'rural', 'chill');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('New York(hiver)', 'FAUX', 'VRAI', 'VRAI', 'VRAI', 'FAUX', 'FAUX', 'FAUX', 'urbain', 'chill');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('New York(été)', 'VRAI', 'FAUX', 'VRAI', 'VRAI', 'FAUX', 'VRAI', 'FAUX', 'urbain', 'chill');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Himalaya', 'FAUX', 'VRAI', 'VRAI', 'VRAI', 'VRAI', 'FAUX', 'FAUX', 'rural', 'backpack');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Sahara', 'VRAI', 'FAUX', 'FAUX', 'VRAI', 'FAUX', 'FAUX', 'VRAI', 'rural', 'backpack');
-INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Laponie', 'FAUX', 'VRAI', 'VRAI', 'VRAI', 'VRAI', 'FAUX', 'FAUX', 'rural', 'backpack');
+INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Maldive', 1, 0, 0, 1, 0, 1, 0, 'rural', 'chill');
+INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('New York(hiver)', 0, 1, 1, 1, 0, 0, 0, 'urbain', 'chill');
+INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('New York(été)', 1, 0, 1, 1, 0, 1, 0, 'urbain', 'chill');
+INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Himalaya', 0, 1, 1, 1, 1, 0, 0, 'rural', 'backpack');
+INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Sahara', 1, 0, 0, 1, 0, 0, 1, 'rural', 'backpack');
+INSERT INTO destinations (Destination, Chaud , Froid, Pluvieux, Ensoleillé, montagneux, plage, désert, urbainRural, backpackChill) VALUES ('Laponie', 0, 1, 1, 1, 1, 0, 0, 'rural', 'backpack');
