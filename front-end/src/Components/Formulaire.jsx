@@ -60,6 +60,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
       typeVoyage: selectedVoyage,
       typeLieu: selectedLieu,
       genre: selectedGenre,
+      voyageur: userPrenom,
     });
     navigate("/mavalise");
   };
@@ -213,11 +214,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           })}
         </div>
         <div className="flex justify-center">
-          <button
-            onClick={console.log(selectedSaison)}
-            className="border p-1 rounded-md border-black"
-            type="submit"
-          >
+          <button className="border p-1 rounded-md border-black" type="submit">
             Soumettre
           </button>
         </div>

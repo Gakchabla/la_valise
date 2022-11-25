@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import CheckListResult from "../Components/CheckListResult";
+import CheckListResultVetements from "../Components/CheckListResultVetements";
 
 export default function MaValise({
   setPageTitle,
@@ -44,18 +46,44 @@ export default function MaValise({
       getNonEssentiels();
     }
   }, []);
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-8 h-8"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+    />
+  </svg>;
   return (
-    <div>
-      <legend className="text-2xl font-medium self-center text-gray-900">
-        🧳 Votre Valise:
+    <div className="bg-primary min-h-screen h-fit">
+      <Link to="/monvoyage">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="w-12 h-12"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+          />
+        </svg>
+      </Link>
+      <legend className="text-3xl mt-5 pl-2 font-medium self-center text-center text-white">
+        {voyageInfos.voyageur
+          ? `Salut ${voyageInfos.voyageur}, voilà ta Valise 🧳`
+          : `Salut Voyageur, voilà ta Valise 🧳`}
       </legend>
-      <legend>Produits d'hygiène:</legend>
-      <CheckListResult
-        items={essentiels
-          .filter((item) => item.categorie === "hygiene")
-          .concat(nonEssentiels.filter((item) => item.categorie === "hygiene"))}
-      />
-      <legend>Vêtements:</legend>
+      <legend className="pt-5 pl-2">Vêtements:</legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "vetement")
@@ -63,7 +91,15 @@ export default function MaValise({
             nonEssentiels.filter((item) => item.categorie === "vetement")
           )}
       />
-      <legend>Autres:</legend>
+
+      <legend className="pt-5 pl-2">Produits d'hygiène:</legend>
+      <CheckListResult
+        items={essentiels
+          .filter((item) => item.categorie === "hygiene")
+          .concat(nonEssentiels.filter((item) => item.categorie === "hygiene"))}
+      />
+
+      <legend className="pt-5 pl-2">Autres:</legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "autre")

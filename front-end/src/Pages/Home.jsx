@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home({ setPageTitle, setFooterOpen }) {
   useEffect(() => setPageTitle("La Valise"));
@@ -8,13 +9,16 @@ function Home({ setPageTitle, setFooterOpen }) {
       <div className="h-1/4 w-full flex flex-col items-start justify-center">
         <h1 className="text-white text-6xl mt-4 ml-6">La valise</h1>
       </div>
-      <div className="w-full self-center h-20  mb-16 flex justify-center">
-        <button
-          type="button"
-          className="w-3/4 bg-button rounded-3xl text-slate-100 text-6xl"
-        >
-          Go !
-        </button>
+
+      <div className="w-full self-center h-20  mb-16 flex flex-wrap justify-center">
+        <Link to="/monvoyage">
+          <button
+            type="button"
+            className="w-[75vw] bg-button rounded-3xl text-slate-100 text-6xl"
+          >
+            Go !
+          </button>
+        </Link>
       </div>
     </div>
   );

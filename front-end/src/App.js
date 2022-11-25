@@ -21,24 +21,14 @@ function App() {
             <Home setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} />
           }
         />
-        <Route
-          path="/monvoyage"
-          element={
-            <MonVoyage
-              setPageTitle={setPageTitle}
-              setFooterOpen={setFooterOpen}
-            />
-          }
-        />
-        <Route
-          path="/mavalise"
-          element={
-            <MaValise
-              setPageTitle={setPageTitle}
-              setFooterOpen={setFooterOpen}
-            />
-          }
-        />
+        
+            <Route path="/monvoyage" element={ <MonVoyage setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} setVoyageInfos={setVoyageInfos} voyageInfos={voyageInfos} setTravelTime={setTravelTime}/>} />
+          
+        
+    
+            <Route path="/mavalise" element={ <MaValise setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} voyageInfos={voyageInfos} travelTime={travelTime}/>} />
+          
+      
       </Routes>
     </div>
   );
