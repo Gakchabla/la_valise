@@ -37,7 +37,7 @@ function Formulaire() {
   };
 
   return (
-    <div className="flex flex-col border rounded-sm border-black">
+    <div className="flex h-full flex-col">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -45,18 +45,19 @@ function Formulaire() {
         }}
         action=""
         method="post"
+        className="flex flex-col justify-between h-full"
       >
-        <div className="flex">
-          <label className="p-4" htmlFor="Name">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="Name">
             Name :
           </label>
           <input
-            className="self-center rounded-md shadow-sm h-full border border-black"
+            className="self-center rounded-md shadow-sm h-full border  "
             type="text"
           />
         </div>
-        <div className="flex">
-          <label className="p-4" htmlFor="dateDepart">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="dateDepart">
             Date de départ :
           </label>
           <input
@@ -65,12 +66,12 @@ function Formulaire() {
               const selected = e.target.value;
               setSelectedDepart(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border rounded-md h-10"
             type="date"
           />
         </div>
-        <div className="flex">
-          <label className="p-4" htmlFor="dateRetour">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="dateRetour">
             Date de de retour :
           </label>
           <input
@@ -79,21 +80,21 @@ function Formulaire() {
               const selected = e.target.value;
               setSelectedRetour(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border rounded-md h-10"
             type="date"
           />
         </div>
-        <div className="flex items-center">
-          <label className="p-4" htmlFor="Name">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="Name">
             Gender :
           </label>
-          <select className="border border-black rounded-md h-10" name="gender">
+          <select className="border   rounded-md h-10" name="gender">
             <option value="value">Male</option>
             <option value="value">Female</option>
           </select>
         </div>
-        <div className="flex items-center">
-          <label className="p-4" htmlFor="Name">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="Name">
             Destination :
           </label>
           <select
@@ -102,7 +103,7 @@ function Formulaire() {
               const selected = e.value;
               setSelectedDestination(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border  rounded-md h-10"
             name="destination"
           >
             {destinations.map((el) => {
@@ -110,15 +111,17 @@ function Formulaire() {
             })}
           </select>
         </div>
-        <div>
-          <label htmlFor="climat">Type de climat :</label>
+        <div className="justify-between flex">
+          <label htmlFor="climat" className="text-white">
+            Type de climat :
+          </label>
           <select
             value={selectedClimat}
             onChange={(e) => {
               const selected = e.value;
               setSelectedClimat(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border  rounded-md h-10"
             name="destination"
           >
             {formData.climat.map((el) => {
@@ -126,15 +129,17 @@ function Formulaire() {
             })}
           </select>
         </div>
-        <div>
-          <label htmlFor="climat">Météo :</label>
+        <div className="justify-between flex ">
+          <label htmlFor="climat" className="text-white">
+            Météo :
+          </label>
           <select
             value={selectedMeteo}
             onChange={(e) => {
               const selected = e.value;
               setSelectedMeteo(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border rounded-md h-10"
             name="destination"
           >
             {formData.meteo.map((el) => {
@@ -142,15 +147,17 @@ function Formulaire() {
             })}
           </select>
         </div>
-        <div>
-          <label htmlFor="climat">Type de voyage :</label>
+        <div className="justify-between flex">
+          <label htmlFor="climat" className="text-white">
+            Type de voyage :
+          </label>
           <select
             value={selectedVoyage}
             onChange={(e) => {
               const selected = e.value;
               setSelectedVoyage(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border  rounded-md h-10"
             name="destination"
           >
             {formData.typeVoyage.map((el) => {
@@ -158,15 +165,17 @@ function Formulaire() {
             })}
           </select>
         </div>
-        <div>
-          <label htmlFor="climat">Type de Lieu :</label>
+        <div className="justify-between flex">
+          <label htmlFor="climat" className="text-white">
+            Type de Lieu :
+          </label>
           <select
             value={selectedLieu}
             onChange={(e) => {
               const selected = e.value;
               setSelectedLieu(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border  rounded-md h-10"
             name="destination"
           >
             {formData.typeLieu.map((el) => {
@@ -174,11 +183,13 @@ function Formulaire() {
             })}
           </select>
         </div>
-        <div className="flex">
+        <div className="flex justify-between">
           {formData.saison.map((el) => {
             return (
               <div className="ml-4">
-                <label htmlFor="climat">{el}</label>
+                <label htmlFor="climat" className="text-white">
+                  {el}
+                </label>
                 <input value={el} type="radio" />
               </div>
             );
@@ -186,8 +197,7 @@ function Formulaire() {
         </div>
         <div className="flex justify-center">
           <button
-            onClick={console.log(selectedSaison)}
-            className="border p-1 rounded-md border-black"
+            className="px-4 rounded-3xl text-slate-100 text-6xl bg-button"
             type="submit"
           >
             Soumettre
