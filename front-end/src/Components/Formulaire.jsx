@@ -66,7 +66,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
   };
   useEffect(() => duration(), [selectedDepart, selectedRetour]);
   return (
-    <div className="flex flex-col border rounded-sm border-black">
+    <div className="flex h-full flex-col">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -74,20 +74,21 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
         }}
         action=""
         method="post"
+        className="flex flex-col justify-between h-full"
       >
         <div className="flex">
           <label className="p-4" htmlFor="Name">
             Prénom:
           </label>
           <input
-            className="self-center rounded-md shadow-sm h-full border border-black"
+            className="self-center rounded-md shadow-sm h-full border  "
             type="text"
             value={userPrenom}
             onChange={(e) => setUserPrenom(e.target.value)}
           />
         </div>
-        <div className="flex">
-          <label className="p-4" htmlFor="dateDepart">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="dateDepart">
             Date de départ :
           </label>
           <input
@@ -96,12 +97,12 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               const selected = e.target.value;
               setSelectedDepart(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border rounded-md h-10"
             type="date"
           />
         </div>
-        <div className="flex">
-          <label className="p-4" htmlFor="dateRetour">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="dateRetour">
             Date de de retour :
           </label>
           <input
@@ -110,7 +111,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               const selected = e.target.value;
               setSelectedRetour(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border rounded-md h-10"
             type="date"
           />
         </div>
@@ -125,6 +126,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               const selected = e.target.value;
               setSelectedGenre(selected);
             }}
+            className="border  rounded-md h-10"
+            name="destination"
           >
             <option value="">----</option>
             <option value="man">Homme</option>
@@ -132,15 +135,17 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             <option value="both">Non-binaire</option>
           </select>
         </div>
-        <div>
-          <label htmlFor="climat">Type de climat :</label>
+        <div className="justify-between flex">
+          <label htmlFor="climat" className="text-white">
+            Type de climat :
+          </label>
           <select
             value={selectedClimat}
             onChange={(e) => {
               const selected = e.target.value;
               setSelectedClimat(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border  rounded-md h-10"
             name="destination"
           >
             {formData.climat.map((el) => {
@@ -156,7 +161,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               const selected = e.target.value;
               setSelectedMeteo(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border rounded-md h-10"
             name="destination"
           >
             {formData.meteo.map((el) => {
@@ -179,7 +184,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               const selected = e.target.value;
               setSelectedVoyage(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border  rounded-md h-10"
             name="destination"
           >
             {formData.typeVoyage.map((el) => {
@@ -187,15 +192,17 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             })}
           </select>
         </div>
-        <div>
-          <label htmlFor="climat">Type de Lieu :</label>
+        <div className="justify-between flex">
+          <label htmlFor="climat" className="text-white">
+            Type de Lieu :
+          </label>
           <select
             value={selectedLieu}
             onChange={(e) => {
               const selected = e.target.value;
               setSelectedLieu(selected);
             }}
-            className="border border-black rounded-md h-10"
+            className="border  rounded-md h-10"
             name="destination"
           >
             {formData.typeLieu.map((el) => {
@@ -203,18 +210,23 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             })}
           </select>
         </div>
-        <div className="flex">
+        <div className="flex justify-between">
           {formData.saison.map((el) => {
             return (
               <div className="ml-4">
-                <label htmlFor="climat">{el}</label>
+                <label htmlFor="climat" className="text-white">
+                  {el}
+                </label>
                 <input value={el} type="radio" />
               </div>
             );
           })}
         </div>
         <div className="flex justify-center">
-          <button className="border p-1 rounded-md border-black" type="submit">
+          <button
+            className="px-4 rounded-3xl text-slate-100 text-6xl bg-button"
+            type="submit"
+          >
             Soumettre
           </button>
         </div>
