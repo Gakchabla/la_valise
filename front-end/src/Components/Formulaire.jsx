@@ -74,7 +74,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
         }}
         action=""
         method="post"
-        className="flex flex-col justify-between h-full">
+        className="flex flex-col justify-between h-full"
+      >
         <div className="flex justify-between">
           <label className="text-white font-leagueSpartan" htmlFor="Name">
             Prénom:
@@ -125,7 +126,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedGenre(selected);
             }}
             className="border rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             <option value="">----</option>
             <option value="man">Homme</option>
             <option value="woman">Femme</option>
@@ -143,7 +145,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedClimat(selected);
             }}
             className="border  rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.climat.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
@@ -160,7 +163,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedMeteo(selected);
             }}
             className="border rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.meteo.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
@@ -170,7 +174,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           className="text-white underline font-leagueSpartan"
           href="https://www.accuweather.com/fr/world-weather"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           Consulter les données Météo
         </a>
         <div className="flex justify-between">
@@ -184,7 +189,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedVoyage(selected);
             }}
             className="border  rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.typeVoyage.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
@@ -201,7 +207,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedLieu(selected);
             }}
             className="border  rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.typeLieu.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
@@ -213,7 +220,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               <div className="ml-4">
                 <label
                   htmlFor="climat"
-                  className="text-white font-leagueSpartan">
+                  className="text-white font-leagueSpartan"
+                >
                   {el}
                 </label>
                 <input value={el} type="radio" />
@@ -223,9 +231,10 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
         </div>
         <div className="flex justify-center">
           <button
-            className="px-4 font-leagueSpartan rounded-3xl text-slate-100 text-6xl bg-button"
-            type="submit">
-            Soumettre
+            className="px-4 pt-2 pt-2 h-20 font-leagueSpartan rounded-3xl text-slate-100 text-6xl bg-button"
+            type="submit"
+          >
+            Ma Valise!
           </button>
         </div>
       </form>

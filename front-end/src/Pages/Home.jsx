@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import logo from "../Assets/7800745.png";
 
 function Home() {
   return (
@@ -35,7 +36,7 @@ function Home() {
         <Link to="/monvoyage">
           <button
             type="button"
-            className="w-[75vw] font-leagueSpartan bg-button rounded-3xl text-slate-100 text-6xl"
+            className="w-[75vw] pt-2 font-leagueSpartan bg-button rounded-3xl text-slate-100 text-6xl"
           >
             Go !
           </button>

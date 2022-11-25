@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Icon from "../Components/IconSVG";
+import logo from "../Assets/7800745.png";
 import { motion } from "framer-motion";
 
 import Formulaire from "../Components/Formulaire";
@@ -25,7 +25,8 @@ export default function MonVoyage({
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="w-10 h-10 ml-3">
+            className="w-10 h-10 ml-3"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -34,7 +35,9 @@ export default function MonVoyage({
           </svg>
         </Link>
         <div className="mr-5">
-          <Icon />
+          <Link to="/">
+            <img src={logo} alt="Le logo" className="h-16" />
+          </Link>
         </div>
       </div>
       <div className="w-full text-center pt-6 pr-10">
