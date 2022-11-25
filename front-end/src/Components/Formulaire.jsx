@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
   const [userPrenom, setUserPrenom] = useState("");
@@ -27,7 +27,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
       { value: "zzzz", name: "Inconnue" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
       { value: "soleil", name: "Pluvieux" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
       { value: "pluie", name: "Ensoleillé" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
-      { value: "yyyy", name: "Les deux" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
+      { value: "zzzz", name: "Les deux" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
     ],
     typeVoyage: [
       { value: "", name: "----" },
@@ -42,10 +42,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
       { value: "plage", name: "Plage" },
       { value: "rural", name: "Ville" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
     ],
-    saison: [
-      { value: "hiver", name: "Printemps/Eté" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
-      { value: "ete", name: "Automne/Hiver" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
-    ],
+    saison: ["Automne/Hiver", "Printemps/Eté"],
   };
 
   const depart = new Date(selectedDepart);
@@ -57,7 +54,6 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
     }
   };
   const handleSubmit = () => {
-    duration();
     setVoyageInfos({
       climat: selectedClimat,
       meteo: selectedMeteo,
@@ -158,11 +154,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             name="destination"
           >
             {formData.climat.map((el) => {
-              return (
-                <option key={el.value} value={el.value}>
-                  {el.name}
-                </option>
-              );
+              return <option value={el.value}>{el.name}</option>;
             })}
           </select>
         </div>
@@ -178,11 +170,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             name="destination"
           >
             {formData.meteo.map((el) => {
-              return (
-                <option key={el.value} value={el.value}>
-                  {el.name}
-                </option>
-              );
+              return <option value={el.value}>{el.name}</option>;
             })}
           </select>
         </div>
@@ -205,11 +193,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             name="destination"
           >
             {formData.typeVoyage.map((el) => {
-              return (
-                <option key={el.value} value={el.value}>
-                  {el.name}
-                </option>
-              );
+              return <option value={el.value}>{el.name}</option>;
             })}
           </select>
         </div>
@@ -225,20 +209,16 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             name="destination"
           >
             {formData.typeLieu.map((el) => {
-              return (
-                <option key={el.value} value={el.value}>
-                  {el.name}
-                </option>
-              );
+              return <option value={el.value}>{el.name}</option>;
             })}
           </select>
         </div>
         <div className="flex">
           {formData.saison.map((el) => {
             return (
-              <div key={el.value} className="ml-4">
-                <label htmlFor="climat">{el.name}</label>
-                <input value={el.value} type="radio" />
+              <div className="ml-4">
+                <label htmlFor="climat">{el}</label>
+                <input value={el} type="radio" />
               </div>
             );
           })}

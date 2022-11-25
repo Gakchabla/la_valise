@@ -21,7 +21,6 @@ function App() {
       <Route path="/mavalise" element={ <MaValise setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} voyageInfos={voyageInfos} travelTime={travelTime}/>} />
      </Routes>
      
-     <Footer footerOpen={footerOpen} setFooterOpen={setFooterOpen} />
     </div>
   );
 }
