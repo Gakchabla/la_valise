@@ -74,10 +74,9 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
         }}
         action=""
         method="post"
-        className="flex flex-col justify-between h-full"
-      >
+        className="flex flex-col justify-between h-full">
         <div className="flex justify-between">
-          <label className="text-white" htmlFor="Name">
+          <label className="text-white font-leagueSpartan" htmlFor="Name">
             Prénom:
           </label>
           <input
@@ -88,7 +87,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           />
         </div>
         <div className="flex justify-between">
-          <label className="text-white" htmlFor="dateDepart">
+          <label className="text-white font-leagueSpartan" htmlFor="dateDepart">
             Date de départ :
           </label>
           <input
@@ -102,7 +101,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           />
         </div>
         <div className="flex justify-between">
-          <label className="text-white" htmlFor="dateRetour">
+          <label className="text-white font-leagueSpartan" htmlFor="dateRetour">
             Date de de retour :
           </label>
           <input
@@ -116,19 +115,17 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           />
         </div>
         <div className="flex justify-between">
-          <label className="text-white" htmlFor="Name">
+          <label className="text-white font-leagueSpartan" htmlFor="Name">
             Genre :
           </label>
           <select
-            className="border border-black rounded-md h-10"
             value={selectedGenre}
             onChange={(e) => {
               const selected = e.target.value;
               setSelectedGenre(selected);
             }}
-            className="border  rounded-md h-10"
-            name="destination"
-          >
+            className="border rounded-md h-10"
+            name="destination">
             <option value="">----</option>
             <option value="man">Homme</option>
             <option value="woman">Femme</option>
@@ -136,7 +133,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           </select>
         </div>
         <div className="justify-between flex">
-          <label htmlFor="climat" className="text-white">
+          <label htmlFor="climat" className="text-white font-leagueSpartan">
             Type de climat :
           </label>
           <select
@@ -146,15 +143,14 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedClimat(selected);
             }}
             className="border  rounded-md h-10"
-            name="destination"
-          >
+            name="destination">
             {formData.climat.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
           </select>
         </div>
         <div className="flex justify-between">
-          <label className="text-white" htmlFor="climat">
+          <label className="text-white font-leagueSpartan" htmlFor="climat">
             Météo prévue :
           </label>
           <select
@@ -164,23 +160,21 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedMeteo(selected);
             }}
             className="border rounded-md h-10"
-            name="destination"
-          >
+            name="destination">
             {formData.meteo.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
           </select>
         </div>
         <a
-          className="text-white underline"
+          className="text-white underline font-leagueSpartan"
           href="https://www.accuweather.com/fr/world-weather"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           Consulter les données Météo
         </a>
         <div className="flex justify-between">
-          <label className="text-white" htmlFor="climat">
+          <label className="text-white font-leagueSpartan" htmlFor="climat">
             Type de voyage :
           </label>
           <select
@@ -190,15 +184,14 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedVoyage(selected);
             }}
             className="border  rounded-md h-10"
-            name="destination"
-          >
+            name="destination">
             {formData.typeVoyage.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
           </select>
         </div>
         <div className="justify-between flex">
-          <label htmlFor="climat" className="text-white">
+          <label htmlFor="climat" className="text-white font-leagueSpartan">
             Type de Lieu :
           </label>
           <select
@@ -208,8 +201,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
               setSelectedLieu(selected);
             }}
             className="border  rounded-md h-10"
-            name="destination"
-          >
+            name="destination">
             {formData.typeLieu.map((el) => {
               return <option value={el.value}>{el.name}</option>;
             })}
@@ -219,7 +211,9 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           {formData.saison.map((el) => {
             return (
               <div className="ml-4">
-                <label htmlFor="climat" className="text-white">
+                <label
+                  htmlFor="climat"
+                  className="text-white font-leagueSpartan">
                   {el}
                 </label>
                 <input value={el} type="radio" />
@@ -229,9 +223,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
         </div>
         <div className="flex justify-center">
           <button
-            className="px-4 rounded-3xl text-slate-100 text-6xl bg-button"
-            type="submit"
-          >
+            className="px-4 font-leagueSpartan rounded-3xl text-slate-100 text-6xl bg-button"
+            type="submit">
             Soumettre
           </button>
         </div>

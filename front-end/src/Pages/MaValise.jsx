@@ -3,17 +3,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CheckListResult from "../Components/CheckListResult";
 import Icon from "../Components/IconSVG";
+import Loader from "../Components/Loader";
 
-export default function MaValise({
-  setPageTitle,
-  setFooterOpen,
-  voyageInfos,
-  travelTime,
-}) {
+export default function MaValise({ voyageInfos, travelTime }) {
   const [essentiels, setEssentiels] = useState([]);
   const [nonEssentiels, setNonEssentiels] = useState([]);
-  useEffect(() => setPageTitle("Ma Valise"));
-  useEffect(() => setFooterOpen(false));
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  });
 
   useEffect(() => {
     fetch("http://localhost:5020/api/items/essentiels")
@@ -47,7 +48,9 @@ export default function MaValise({
     }
   }, []);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="bg-primary min-h-screen h-fit">
       <div className="flex justify-between items-center h-24">
         <Link to="/monvoyage">
@@ -57,8 +60,7 @@ export default function MaValise({
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="w-10 h-10 ml-3"
-          >
+            className="w-10 h-10 ml-3">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -70,17 +72,19 @@ export default function MaValise({
           <Icon />
         </div>
       </div>
-      <legend className="text-3xl mt-5 pl-2 font-medium self-center text-center text-white">
+      <legend className="text-3xl mt-5 pl-2 font-medium self-center text-center font-leagueSpartan text-white">
         {voyageInfos.voyageur
           ? `${voyageInfos.voyageur}, voilà ta Valise 🧳`
           : `Voyageur, voilà ta Valise 🧳`}
       </legend>
-      <legend className="text-xl mt-5 pl-2 font-medium self-center text-center text-white">
+      <legend className="text-xl mt-5 pl-2 font-medium self-center text-center font-leagueSpartan text-white">
         {travelTime
           ? `Prévois pour ${travelTime} jours:`
           : "Prévois pour la durée de ton voyage:"}
       </legend>
-      <legend className="pt-5 pl-2 text-lg text-slate-100">Vêtements:</legend>
+      <legend className="pt-5 w-full text-center pl-2 text-xl font-leagueSpartan text-slate-100">
+        Vêtements:
+      </legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "vetement")
@@ -89,7 +93,7 @@ export default function MaValise({
           )}
       />
 
-      <legend className="pt-5 pl-2 text-lg text-slate-100">
+      <legend className="pt-5 pl-2 w-full text-center text-xl font-leagueSpartan text-slate-100">
         Produits d'hygiène:
       </legend>
       <CheckListResult
@@ -98,7 +102,9 @@ export default function MaValise({
           .concat(nonEssentiels.filter((item) => item.categorie === "hygiene"))}
       />
 
-      <legend className="pt-5 pl-2 text-lg text-slate-100">Autres:</legend>
+      <legend className="pt-5 pl-2 w-full text-center text-xl font-leagueSpartan text-slate-100">
+        Autres:
+      </legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "autre")
