@@ -1,57 +1,103 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Formulaire() {
-  const [destinations, setDestinations] = useState([]);
-  const [selectedDestination, setSelectedDestination] = useState("");
+function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
+  const [userPrenom, setUserPrenom] = useState("");
+  const [userNom, setUserNom] = useState("");
   const [selectedDepart, setSelectedDepart] = useState("");
   const [selectedRetour, setSelectedRetour] = useState("");
-  const [travelTime, setTravelTime] = useState(0);
   const [selectedClimat, setSelectedClimat] = useState("");
   const [selectedMeteo, setSelectedMeteo] = useState("");
   const [selectedVoyage, setSelectedVoyage] = useState("");
   const [selectedLieu, setSelectedLieu] = useState("");
   const [selectedSaison, setSelectedSaison] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
+
+  const navigate = useNavigate();
 
   const formData = {
-    climat: ["Chaud", "Froid", "Tempéré"],
-    meteo: ["Pluvieux", "Soleil", "jsp"],
-    typeVoyage: ["Chill", "Sportif"],
-    typeLieu: ["Plage", "Désert", "Montagne", "Ville", "Campagne"],
-    saison: ["Automne/Hiver", "Printemps/Eté"],
+    climat: [
+      { value: "", name: "----" },
+      { value: "both", name: "Tempéré" },
+      { value: "cold", name: "Chaud" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+      { value: "hot", name: "Froid" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+    ],
+    meteo: [
+      { value: "", name: "----" },
+      { value: "zzzz", name: "Inconnue" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
+      { value: "soleil", name: "Pluvieux" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+      { value: "pluie", name: "Ensoleillé" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+      { value: "yyyy", name: "Les deux" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
+    ],
+    typeVoyage: [
+      { value: "", name: "----" },
+      { value: "backpack", name: "Détente" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
+      { value: "chill", name: "Backpacker" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
+    ],
+    typeLieu: [
+      { value: "", name: "----" },
+      { value: "urbain", name: "Campagne" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+      { value: "desert", name: "Désert" },
+      { value: "montagne", name: "Montagne" },
+      { value: "plage", name: "Plage" },
+      { value: "rural", name: "Ville" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+    ],
+    saison: [
+      { value: "hiver", name: "Printemps/Eté" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+      { value: "ete", name: "Automne/Hiver" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+    ],
   };
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/destinations")
-      .then((res) => res.json())
-      .then((data) => {
-        setDestinations(data);
-      });
-  }, []);
 
   const depart = new Date(selectedDepart);
   const retour = new Date(selectedRetour);
 
   const duration = () => {
-    setTravelTime(parseInt(depart.getDate() - retour.getDate()) * -1);
-    console.log(travelTime);
+    if (selectedDepart && selectedRetour) {
+      setTravelTime(parseInt(depart.getDate() - retour.getDate()) * -1);
+    }
   };
-
+  const handleSubmit = () => {
+    duration();
+    setVoyageInfos({
+      climat: selectedClimat,
+      meteo: selectedMeteo,
+      typeVoyage: selectedVoyage,
+      typeLieu: selectedLieu,
+      genre: selectedGenre,
+    });
+    navigate("/mavalise");
+  };
+  useEffect(() => duration(), [selectedDepart, selectedRetour]);
   return (
     <div className="flex flex-col border rounded-sm border-black">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          duration();
+          handleSubmit();
         }}
         action=""
-        method="post">
+        method="post"
+      >
         <div className="flex">
           <label className="p-4" htmlFor="Name">
-            Name :
+            Prénom:
           </label>
           <input
             className="self-center rounded-md shadow-sm h-full border border-black"
             type="text"
+            value={userPrenom}
+            onChange={(e) => setUserPrenom(e.target.value)}
+          />
+        </div>
+        <div className="flex">
+          <label className="p-4" htmlFor="Name">
+            Nom:
+          </label>
+          <input
+            className="self-center rounded-md shadow-sm h-full border border-black"
+            type="text"
+            value={userNom}
+            onChange={(e) => setUserNom(e.target.value)}
           />
         </div>
         <div className="flex">
@@ -84,28 +130,20 @@ function Formulaire() {
         </div>
         <div className="flex items-center">
           <label className="p-4" htmlFor="Name">
-            Gender :
-          </label>
-          <select className="border border-black rounded-md h-10" name="gender">
-            <option value="value">Male</option>
-            <option value="value">Female</option>
-          </select>
-        </div>
-        <div className="flex items-center">
-          <label className="p-4" htmlFor="Name">
-            Destination :
+            Genre :
           </label>
           <select
-            value={selectedDestination}
-            onChange={(e) => {
-              const selected = e.value;
-              setSelectedDestination(selected);
-            }}
             className="border border-black rounded-md h-10"
-            name="destination">
-            {destinations.map((el) => {
-              return <option value="value">{el.city}</option>;
-            })}
+            value={selectedGenre}
+            onChange={(e) => {
+              const selected = e.target.value;
+              setSelectedGenre(selected);
+            }}
+          >
+            <option value="">----</option>
+            <option value="man">Homme</option>
+            <option value="woman">Femme</option>
+            <option value="both">Non-binaire</option>
           </select>
         </div>
         <div>
@@ -113,43 +151,65 @@ function Formulaire() {
           <select
             value={selectedClimat}
             onChange={(e) => {
-              const selected = e.value;
+              const selected = e.target.value;
               setSelectedClimat(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.climat.map((el) => {
-              return <option value="value">{el}</option>;
+              return (
+                <option key={el.value} value={el.value}>
+                  {el.name}
+                </option>
+              );
             })}
           </select>
         </div>
         <div>
-          <label htmlFor="climat">Météo :</label>
+          <label htmlFor="climat">Météo prévue :</label>
           <select
             value={selectedMeteo}
             onChange={(e) => {
-              const selected = e.value;
+              const selected = e.target.value;
               setSelectedMeteo(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.meteo.map((el) => {
-              return <option value="value">{el}</option>;
+              return (
+                <option key={el.value} value={el.value}>
+                  {el.name}
+                </option>
+              );
             })}
           </select>
         </div>
+        <a
+          href="https://www.accuweather.com/fr/world-weather"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Consulter les données Météo
+        </a>
         <div>
           <label htmlFor="climat">Type de voyage :</label>
           <select
             value={selectedVoyage}
             onChange={(e) => {
-              const selected = e.value;
+              const selected = e.target.value;
               setSelectedVoyage(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.typeVoyage.map((el) => {
-              return <option value="value">{el}</option>;
+              return (
+                <option key={el.value} value={el.value}>
+                  {el.name}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -158,31 +218,33 @@ function Formulaire() {
           <select
             value={selectedLieu}
             onChange={(e) => {
-              const selected = e.value;
+              const selected = e.target.value;
               setSelectedLieu(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.typeLieu.map((el) => {
-              return <option value="value">{el}</option>;
+              return (
+                <option key={el.value} value={el.value}>
+                  {el.name}
+                </option>
+              );
             })}
           </select>
         </div>
         <div className="flex">
           {formData.saison.map((el) => {
             return (
-              <div className="ml-4">
-                <label htmlFor="climat">{el}</label>
-                <input value={el} type="radio" />
+              <div key={el.value} className="ml-4">
+                <label htmlFor="climat">{el.name}</label>
+                <input value={el.value} type="radio" />
               </div>
             );
           })}
         </div>
         <div className="flex justify-center">
-          <button
-            onClick={console.log(selectedSaison)}
-            className="border p-1 rounded-md border-black"
-            type="submit">
+          <button className="border p-1 rounded-md border-black" type="submit">
             Soumettre
           </button>
         </div>
