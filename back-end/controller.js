@@ -42,7 +42,7 @@ const controller = {
 
         value: req.query.temperature,
 
-        operator: "=",
+        operator: "!=",
       });
     }
 
@@ -52,7 +52,7 @@ const controller = {
 
         value: req.query.meteo,
 
-        operator: "=",
+        operator: "!=",
       });
     }
     if (req.query.montagneux != null) {
@@ -88,7 +88,7 @@ const controller = {
 
         value: req.query.urbainourural,
 
-        operator: "=",
+        operator: "!=",
       });
     }
     if (req.query.backpackouchill != null) {
@@ -97,7 +97,7 @@ const controller = {
 
         value: req.query.backpackouchill,
 
-        operator: "=",
+        operator: "!=",
       });
     }
     if (req.query.saison != null) {

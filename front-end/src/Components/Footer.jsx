@@ -8,7 +8,7 @@ export default function Footer({ footerOpen }) {
       <img
         src={background}
         alt="Countryside background"
-        classname=" absolute z-0 bottom-11"
+        className=" absolute z-0 bottom-11"
       />
 
       <footer
