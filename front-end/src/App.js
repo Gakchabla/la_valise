@@ -1,10 +1,14 @@
-import React from "react";
-import Home from "./Pages/Home";
+import { React, useState } from "react";
+import AnimatedRoutes from "./Components/AnimatedRoutes";
+
 
 function App() {
+  const [voyageInfos, setVoyageInfos] = useState({});
+  const [travelTime, setTravelTime] = useState(0);
+
   return (
-    <div className="App">
-      <Home />
+    <div className="App bg-bg">
+    <AnimatedRoutes voyageInfos={voyageInfos} setVoyageInfos={setVoyageInfos} travelTime={travelTime} setTravelTime={setTravelTime} />
     </div>
   );
 }
