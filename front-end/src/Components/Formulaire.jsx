@@ -86,17 +86,6 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           />
         </div>
         <div className="flex">
-          <label className="p-4" htmlFor="Name">
-            Nom:
-          </label>
-          <input
-            className="self-center rounded-md shadow-sm h-full border border-black"
-            type="text"
-            value={userNom}
-            onChange={(e) => setUserNom(e.target.value)}
-          />
-        </div>
-        <div className="flex">
           <label className="p-4" htmlFor="dateDepart">
             Date de départ :
           </label>
@@ -224,7 +213,11 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           })}
         </div>
         <div className="flex justify-center">
-          <button className="border p-1 rounded-md border-black" type="submit">
+          <button
+            onClick={console.log(selectedSaison)}
+            className="border p-1 rounded-md border-black"
+            type="submit"
+          >
             Soumettre
           </button>
         </div>

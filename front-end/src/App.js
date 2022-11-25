@@ -13,14 +13,33 @@ function App() {
   const [travelTime, setTravelTime] = useState(0)
 
   return (
-    <div className="App bg-gradient-to-b from-stone-100 to-orange-200 h-screen">
-      <Header pageTitle={pageTitle}/>
-     <Routes>
-      <Route path="/" element={ <Home setPageTitle={setPageTitle}setFooterOpen={setFooterOpen}/>} />
-      <Route path="/monvoyage" element={ <MonVoyage setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} setVoyageInfos={setVoyageInfos} voyageInfos={voyageInfos} setTravelTime={setTravelTime}/>} />
-      <Route path="/mavalise" element={ <MaValise setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} voyageInfos={voyageInfos} travelTime={travelTime}/>} />
-     </Routes>
-     
+    <div className="App">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home setPageTitle={setPageTitle} setFooterOpen={setFooterOpen} />
+          }
+        />
+        <Route
+          path="/monvoyage"
+          element={
+            <MonVoyage
+              setPageTitle={setPageTitle}
+              setFooterOpen={setFooterOpen}
+            />
+          }
+        />
+        <Route
+          path="/mavalise"
+          element={
+            <MaValise
+              setPageTitle={setPageTitle}
+              setFooterOpen={setFooterOpen}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 }
