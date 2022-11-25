@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "../Components/IconSVG";
 import { motion } from "framer-motion";
@@ -25,8 +25,7 @@ export default function MonVoyage({
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="w-10 h-10 ml-3"
-          >
+            className="w-10 h-10 ml-3">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -39,7 +38,9 @@ export default function MonVoyage({
         </div>
       </div>
       <div className="w-full text-center pt-6 pr-10">
-        <h1 className="text-slate-100 self-center text-4xl">Mon Voyage :</h1>
+        <h1 className="text-slate-100 self-center font-leagueSpartan text-4xl">
+          Mon Voyage :
+        </h1>
       </div>
       <div className="h-3/4 m-8">
         <Formulaire

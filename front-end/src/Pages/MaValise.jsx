@@ -8,6 +8,13 @@ import { motion } from "framer-motion";
 export default function MaValise({ voyageInfos, travelTime }) {
   const [essentiels, setEssentiels] = useState([]);
   const [nonEssentiels, setNonEssentiels] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  });
 
   useEffect(() => {
     fetch("http://localhost:5020/api/items/essentiels")
@@ -42,7 +49,9 @@ export default function MaValise({ voyageInfos, travelTime }) {
   }, []);
 
   return (
-    <motion.div
+    <Loader />
+  ) : (
+    </div><motion.div
       className="bg-primary min-h-screen h-fit"
       initial={{ width: 0 }}
       animate={{ width: "100vw" }}
@@ -56,8 +65,7 @@ export default function MaValise({ voyageInfos, travelTime }) {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="w-10 h-10 ml-3"
-          >
+            className="w-10 h-10 ml-3">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -69,17 +77,19 @@ export default function MaValise({ voyageInfos, travelTime }) {
           <Icon />
         </div>
       </div>
-      <legend className="text-3xl mt-5 pl-2 font-medium self-center text-center text-white">
+      <legend className="text-3xl mt-5 pl-2 font-medium self-center text-center font-leagueSpartan text-white">
         {voyageInfos.voyageur
           ? `${voyageInfos.voyageur}, voilà ta Valise 🧳`
           : `Voyageur, voilà ta Valise 🧳`}
       </legend>
-      <legend className="text-xl mt-5 pl-2 font-medium self-center text-center text-white">
+      <legend className="text-xl mt-5 pl-2 font-medium self-center text-center font-leagueSpartan text-white">
         {travelTime
           ? `Prévois pour ${travelTime} jours:`
           : "Prévois pour la durée de ton voyage:"}
       </legend>
-      <legend className="pt-5 pl-2 text-lg text-slate-100">Vêtements:</legend>
+      <legend className="pt-5 w-full text-center pl-2 text-xl font-leagueSpartan text-slate-100">
+        Vêtements:
+      </legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "vetement")
@@ -88,7 +98,7 @@ export default function MaValise({ voyageInfos, travelTime }) {
           )}
       />
 
-      <legend className="pt-5 pl-2 text-lg text-slate-100">
+      <legend className="pt-5 pl-2 w-full text-center text-xl font-leagueSpartan text-slate-100">
         Produits d'hygiène:
       </legend>
       <CheckListResult
@@ -97,7 +107,9 @@ export default function MaValise({ voyageInfos, travelTime }) {
           .concat(nonEssentiels.filter((item) => item.categorie === "hygiene"))}
       />
 
-      <legend className="pt-5 pl-2 text-lg text-slate-100">Autres:</legend>
+      <legend className="pt-5 pl-2 w-full text-center text-xl font-leagueSpartan text-slate-100">
+        Autres:
+      </legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "autre")

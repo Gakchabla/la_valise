@@ -8,13 +8,11 @@ export default function CheckListResult({ items }) {
           {items.map((val) => (
             <div
               key={val.id}
-              className="flex justify-center   w-11/12 items-start"
-            >
-              <div className="min-w-0 flex-1 text-sm">
+              className="flex justify-center w-11/12 items-start">
+              <div className="min-w-0 flex-1 text-md">
                 <label
                   htmlFor={val.id}
-                  className="select-none font-medium text-slate-100"
-                >
+                  className="select-none font-lg font-leagueSpartan text-slate-100">
                   {val.itemname}
                 </label>
               </div>
