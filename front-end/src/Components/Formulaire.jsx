@@ -66,7 +66,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
   };
   useEffect(() => duration(), [selectedDepart, selectedRetour]);
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col bg-primary">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -76,12 +76,12 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
         method="post"
         className="flex flex-col justify-between h-full"
       >
-        <div className="flex">
-          <label className="p-4" htmlFor="Name">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="Name">
             Prénom:
           </label>
           <input
-            className="self-center rounded-md shadow-sm h-full border  "
+            className="self-center w-3/5 rounded-md shadow-sm h-full border "
             type="text"
             value={userPrenom}
             onChange={(e) => setUserPrenom(e.target.value)}
@@ -115,8 +115,8 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             type="date"
           />
         </div>
-        <div className="flex items-center">
-          <label className="p-4" htmlFor="Name">
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="Name">
             Genre :
           </label>
           <select
@@ -153,8 +153,10 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             })}
           </select>
         </div>
-        <div>
-          <label htmlFor="climat">Météo prévue :</label>
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="climat">
+            Météo prévue :
+          </label>
           <select
             value={selectedMeteo}
             onChange={(e) => {
@@ -170,14 +172,17 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
           </select>
         </div>
         <a
+          className="text-white underline"
           href="https://www.accuweather.com/fr/world-weather"
           target="_blank"
           rel="noopener noreferrer"
         >
           Consulter les données Météo
         </a>
-        <div>
-          <label htmlFor="climat">Type de voyage :</label>
+        <div className="flex justify-between">
+          <label className="text-white" htmlFor="climat">
+            Type de voyage :
+          </label>
           <select
             value={selectedVoyage}
             onChange={(e) => {

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import CheckListResult from "../Components/CheckListResult";
-import CheckListResultVetements from "../Components/CheckListResultVetements";
+import Icon from "../Components/IconSVG";
 
 export default function MaValise({
   setPageTitle,
@@ -46,44 +46,41 @@ export default function MaValise({
       getNonEssentiels();
     }
   }, []);
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-8 h-8"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-    />
-  </svg>;
+
   return (
     <div className="bg-primary min-h-screen h-fit">
-      <Link to="/monvoyage">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-12 h-12"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-          />
-        </svg>
-      </Link>
+      <div className="flex justify-between items-center h-24">
+        <Link to="/monvoyage">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-10 h-10 ml-3"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+            />
+          </svg>
+        </Link>
+        <div className="mr-5">
+          <Icon />
+        </div>
+      </div>
       <legend className="text-3xl mt-5 pl-2 font-medium self-center text-center text-white">
         {voyageInfos.voyageur
-          ? `Salut ${voyageInfos.voyageur}, voilà ta Valise 🧳`
-          : `Salut Voyageur, voilà ta Valise 🧳`}
+          ? `${voyageInfos.voyageur}, voilà ta Valise 🧳`
+          : `Voyageur, voilà ta Valise 🧳`}
       </legend>
-      <legend className="pt-5 pl-2">Vêtements:</legend>
+      <legend className="text-xl mt-5 pl-2 font-medium self-center text-center text-white">
+        {travelTime
+          ? `Prévois pour ${travelTime} jours:`
+          : "Prévois pour la durée de ton voyage:"}
+      </legend>
+      <legend className="pt-5 pl-2 text-lg text-slate-100">Vêtements:</legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "vetement")
@@ -92,14 +89,16 @@ export default function MaValise({
           )}
       />
 
-      <legend className="pt-5 pl-2">Produits d'hygiène:</legend>
+      <legend className="pt-5 pl-2 text-lg text-slate-100">
+        Produits d'hygiène:
+      </legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "hygiene")
           .concat(nonEssentiels.filter((item) => item.categorie === "hygiene"))}
       />
 
-      <legend className="pt-5 pl-2">Autres:</legend>
+      <legend className="pt-5 pl-2 text-lg text-slate-100">Autres:</legend>
       <CheckListResult
         items={essentiels
           .filter((item) => item.categorie === "autre")

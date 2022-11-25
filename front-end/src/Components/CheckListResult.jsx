@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CheckListResult({ items }) {
   return (
-    <fieldset className="flex h-fit justify-end">
+    <fieldset className="flex h-fit justify-center">
       <div className="h-full flex flex-col">
         <div className="flex flex-col my-8 h-full w-60 ">
           {items.map((val) => (
