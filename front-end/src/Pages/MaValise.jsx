@@ -3,17 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CheckListResult from "../Components/CheckListResult";
 import Icon from "../Components/IconSVG";
+import { motion } from "framer-motion";
 
-export default function MaValise({
-  setPageTitle,
-  setFooterOpen,
-  voyageInfos,
-  travelTime,
-}) {
+export default function MaValise({ voyageInfos, travelTime }) {
   const [essentiels, setEssentiels] = useState([]);
   const [nonEssentiels, setNonEssentiels] = useState([]);
-  useEffect(() => setPageTitle("Ma Valise"));
-  useEffect(() => setFooterOpen(false));
 
   useEffect(() => {
     fetch("http://localhost:5020/api/items/essentiels")
@@ -48,7 +42,12 @@ export default function MaValise({
   }, []);
 
   return (
-    <div className="bg-primary min-h-screen h-fit">
+    <motion.div
+      className="bg-primary min-h-screen h-fit"
+      initial={{ width: 0 }}
+      animate={{ width: "100vw" }}
+      exit={{ x: -window.innerHeight, transition: { duration: 0.3 } }}
+    >
       <div className="flex justify-between items-center h-24">
         <Link to="/monvoyage">
           <svg
@@ -104,6 +103,6 @@ export default function MaValise({
           .filter((item) => item.categorie === "autre")
           .concat(nonEssentiels.filter((item) => item.categorie === "autre"))}
       />
-    </div>
+    </motion.div>
   );
 }

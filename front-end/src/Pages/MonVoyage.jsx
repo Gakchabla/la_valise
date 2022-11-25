@@ -1,23 +1,22 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../Components/IconSVG";
+import { motion } from "framer-motion";
 
 import Formulaire from "../Components/Formulaire";
 
 export default function MonVoyage({
-  setPageTitle,
-  setFooterOpen,
   setVoyageInfos,
   voyageInfos,
   setTravelTime,
 }) {
-  useEffect(() => setPageTitle("Mon Voyage"));
-  useEffect(() => {
-    setFooterOpen(false);
-  });
-
   return (
-    <div className="min-h-fit h-screen flex-col justify-center bg-bg">
+    <motion.div
+      className="min-h-fit h-screen flex-col justify-center bg-bg"
+      initial={{ width: 0 }}
+      animate={{ width: "100vw" }}
+      exit={{ x: -window.innerHeight, transition: { duration: 0.3 } }}
+    >
       <div className="flex justify-between items-center h-24">
         <Link to="/">
           <svg
@@ -49,6 +48,6 @@ export default function MonVoyage({
           setTravelTime={setTravelTime}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }

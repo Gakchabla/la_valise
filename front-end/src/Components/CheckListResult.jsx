@@ -3,7 +3,7 @@ import React from "react";
 export default function CheckListResult({ items }) {
   return (
     <fieldset className="flex h-fit justify-center">
-      <div className="h-full flex flex-col">
+      <div className="h-full flex flex-col ease-out duration-300">
         <div className="flex flex-col my-8 h-full w-60 ">
           {items.map((val) => (
             <div
