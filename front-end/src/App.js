@@ -12,7 +12,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header pageTitle={pageTitle} />
       <Routes>
         <Route
           path="/"
@@ -39,7 +38,6 @@ function App() {
           }
         />
       </Routes>
-      <Footer footerOpen={footerOpen} setFooterOpen={setFooterOpen} />
     </div>
   );
 }

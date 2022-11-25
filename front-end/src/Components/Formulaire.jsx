@@ -44,7 +44,8 @@ function Formulaire() {
           duration();
         }}
         action=""
-        method="post">
+        method="post"
+      >
         <div className="flex">
           <label className="p-4" htmlFor="Name">
             Name :
@@ -102,7 +103,8 @@ function Formulaire() {
               setSelectedDestination(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {destinations.map((el) => {
               return <option value="value">{el.city}</option>;
             })}
@@ -117,7 +119,8 @@ function Formulaire() {
               setSelectedClimat(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.climat.map((el) => {
               return <option value="value">{el}</option>;
             })}
@@ -132,7 +135,8 @@ function Formulaire() {
               setSelectedMeteo(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.meteo.map((el) => {
               return <option value="value">{el}</option>;
             })}
@@ -147,7 +151,8 @@ function Formulaire() {
               setSelectedVoyage(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.typeVoyage.map((el) => {
               return <option value="value">{el}</option>;
             })}
@@ -162,7 +167,8 @@ function Formulaire() {
               setSelectedLieu(selected);
             }}
             className="border border-black rounded-md h-10"
-            name="destination">
+            name="destination"
+          >
             {formData.typeLieu.map((el) => {
               return <option value="value">{el}</option>;
             })}
@@ -182,7 +188,8 @@ function Formulaire() {
           <button
             onClick={console.log(selectedSaison)}
             className="border p-1 rounded-md border-black"
-            type="submit">
+            type="submit"
+          >
             Soumettre
           </button>
         </div>
