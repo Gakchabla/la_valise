@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
+function Formulaire({ setVoyageInfos, setIsOpen, setTravelTime }) {
   const [userPrenom, setUserPrenom] = useState("");
-  const [userNom, setUserNom] = useState("");
   const [selectedDepart, setSelectedDepart] = useState("");
   const [selectedRetour, setSelectedRetour] = useState("");
   const [selectedClimat, setSelectedClimat] = useState("");
@@ -13,36 +11,37 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
   const [selectedSaison, setSelectedSaison] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
 
-  const navigate = useNavigate();
-
   const formData = {
     climat: [
       { value: "", name: "----" },
-      { value: "both", name: "Tempéré" },
-      { value: "cold", name: "Chaud" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
-      { value: "hot", name: "Froid" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+      { value: "temp", name: "Tempéré" },
+      { value: "hot=1", name: "Chaud" },
+      { value: "cold=1", name: "Froid" },
     ],
     meteo: [
       { value: "", name: "----" },
-      { value: "zzzz", name: "Inconnue" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
-      { value: "soleil", name: "Pluvieux" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
-      { value: "pluie", name: "Ensoleillé" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
-      { value: "zzzz", name: "Les deux" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
+      { value: "inc", name: "Inconnue" },
+      { value: "soleil=1", name: "Ensoleillé" },
+      { value: "mauvais_temps=1", name: "Pluvieux" },
+      { value: "deux", name: "Les deux" },
     ],
     typeVoyage: [
-      { value: "", name: "----" },
-      { value: "backpack", name: "Détente" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
-      { value: "chill", name: "Backpacker" }, // la valeur ne correspond a rien car l'appel a l'api se fait en !=
+      { value: "backpack=0", name: "----" },
+      { value: "detente=1", name: "Détente" },
+      { value: "backpack=1", name: "Backpacker" },
     ],
     typeLieu: [
       { value: "", name: "----" },
-      { value: "urbain", name: "Campagne" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
-      { value: "desert", name: "Désert" },
-      { value: "montagne", name: "Montagne" },
-      { value: "plage", name: "Plage" },
-      { value: "rural", name: "Ville" }, // la valeur est l'inverse car l'appel a l'api se fait en !=
+      { value: "rural=1", name: "Campagne" },
+      { value: "desert=1", name: "Désert" },
+      { value: "montagne=1", name: "Montagne" },
+      { value: "plage=1", name: "Plage" },
+      { value: "urbain=1", name: "Ville" },
     ],
-    saison: ["Automne/Hiver", "Printemps/Eté"],
+    saison: [
+      { value: "automne_hiver=1", name: "Automne/Hiver" },
+      { value: "printemps_ete=1", name: "Printemps/Eté" },
+    ],
   };
 
   const depart = new Date(selectedDepart);
@@ -50,7 +49,9 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
 
   const duration = () => {
     if (selectedDepart && selectedRetour) {
-      setTravelTime(parseInt(depart.getDate() - retour.getDate()) * -1);
+      let timeDiff = retour.getTime() - depart.getTime();
+      let dayDiff = timeDiff / (1000 * 24 * 3600);
+      setTravelTime(dayDiff);
     }
   };
   const handleSubmit = () => {
@@ -62,11 +63,11 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
       genre: selectedGenre,
       voyageur: userPrenom,
     });
-    navigate("/mavalise");
+    setIsOpen("valise");
   };
   useEffect(() => duration(), [selectedDepart, selectedRetour]);
   return (
-    <div className="flex h-full flex-col bg-primary">
+    <div className="flex h-full flex-col lg:w-[30vw]  ">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -81,7 +82,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
             Prénom:
           </label>
           <input
-            className="self-center w-3/5 rounded-md shadow-sm h-full border "
+            className="self-center w-3/5 lg:w-2/5 rounded-md shadow-sm h-10 border "
             type="text"
             value={userPrenom}
             onChange={(e) => setUserPrenom(e.target.value)}
@@ -198,7 +199,7 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
         </div>
         <div className="justify-between flex">
           <label htmlFor="climat" className="text-white font-leagueSpartan">
-            Type de Lieu :
+            Type de Destination :
           </label>
           <select
             value={selectedLieu}
@@ -222,16 +223,16 @@ function Formulaire({ setVoyageInfos, voyageInfos, setTravelTime }) {
                   htmlFor="climat"
                   className="text-white font-leagueSpartan"
                 >
-                  {el}
+                  {el.name}
                 </label>
-                <input value={el} type="radio" />
+                <input value={el.value} type="radio" />
               </div>
             );
           })}
         </div>
         <div className="flex justify-center">
           <button
-            className="px-4 pt-2 pt-2 h-20 font-leagueSpartan rounded-3xl text-slate-100 text-6xl bg-button"
+            className="px-4 pt-2 pt-2 h-20 font-leagueSpartan rounded-3xl text-slate-100 text-4xl font-semibold bg-button"
             type="submit"
           >
             Ma Valise!

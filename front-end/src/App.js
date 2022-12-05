@@ -1,6 +1,7 @@
 import { React, useState } from "react";
-import AnimatedRoutes from "./Components/AnimatedRoutes";
-
+import { Route, Routes } from "react-router-dom";
+import NotFound from "./Components/NotFound";
+import Home from "./Pages/Home";
 
 function App() {
   const [voyageInfos, setVoyageInfos] = useState({});
@@ -8,7 +9,10 @@ function App() {
 
   return (
     <div className="App bg-bg">
-    <AnimatedRoutes voyageInfos={voyageInfos} setVoyageInfos={setVoyageInfos} travelTime={travelTime} setTravelTime={setTravelTime} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
