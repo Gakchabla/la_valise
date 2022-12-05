@@ -27,4 +27,4 @@ app.get("/", controller.welcome);
 app.get("/api/destinations", controller.getDestination);
 app.get("/api/items", controller.getItems);
 app.get("/api/items/filter", controller.getNonEssentielsItems)
-app.get("/api/items/essentiels", controller.getEssentielsItems)
+app.get("/api/essentiels", controller.getEssentielsItems)

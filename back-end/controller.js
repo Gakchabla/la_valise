@@ -23,7 +23,7 @@ const controller = {
     });
   },
   getEssentielsItems: (req, res) => {
-    db.query("SELECT * FROM items WHERE essentiel = 1").then(([results]) => {
+    db.query("SELECT * FROM essentiels").then(([results]) => {
       if (results != null) {
         res.status(200).send(results);
       } else {
@@ -32,27 +32,45 @@ const controller = {
     });
   },
   getNonEssentielsItems: (req, res) => {
-    const initialSql = "select * from items where essentiel = 0";
+    const initialSql = "select * from items";
 
     const where = [];
 
-    if (req.query.temperature != null) {
+    if (req.query.hot != null) {
       where.push({
-        column: "temperature",
+        column: "hot",
 
-        value: req.query.temperature,
+        value: req.query.hot,
 
-        operator: "!=",
+        operator: "=",
+      });
+    }
+    if (req.query.cold != null) {
+      where.push({
+        column: "cold",
+
+        value: req.query.cold,
+
+        operator: "=",
       });
     }
 
-    if (req.query.meteo != null) {
+    if (req.query.mauvais_temps != null) {
       where.push({
-        column: "meteo",
+        column: "mauvais_temps",
 
-        value: req.query.meteo,
+        value: req.query.mauvais_temps,
 
-        operator: "!=",
+        operator: "=",
+      });
+    }
+    if (req.query.soleil != null) {
+      where.push({
+        column: "soleil",
+
+        value: req.query.soleil,
+
+        operator: "=",
       });
     }
     if (req.query.montagneux != null) {
@@ -82,29 +100,56 @@ const controller = {
         operator: "=",
       });
     }
-    if (req.query.urbainourural != null) {
+    if (req.query.urbain != null) {
       where.push({
-        column: "urbainourural",
+        column: "urbain",
 
-        value: req.query.urbainourural,
+        value: req.query.urbain,
 
-        operator: "!=",
+        operator: "=",
       });
     }
-    if (req.query.backpackouchill != null) {
+    if (req.query.rural != null) {
       where.push({
-        column: "backpackouchill",
+        column: "rural",
 
-        value: req.query.backpackouchill,
+        value: req.query.rural,
 
-        operator: "!=",
+        operator: "=",
       });
     }
-    if (req.query.saison != null) {
+    if (req.query.detente != null) {
       where.push({
-        column: "saison",
+        column: "detente",
 
-        value: req.query.saison,
+        value: req.query.detente,
+
+        operator: "=",
+      });
+    }
+    if (req.query.backpack != null) {
+      where.push({
+        column: "backpack",
+
+        value: req.query.backpack,
+
+        operator: "=",
+      });
+    }
+    if (req.query.automne_hiver != null) {
+      where.push({
+        column: "automne_hiver",
+
+        value: req.query.automne_hiver,
+
+        operator: "=",
+      });
+    }
+    if (req.query.printemps_ete != null) {
+      where.push({
+        column: "printemps_ete",
+
+        value: req.query.printemps_ete,
 
         operator: "=",
       });
@@ -119,17 +164,16 @@ const controller = {
       });
     }
 
-    db
-      .query(
-        where.reduce(
-          (sql, { column, operator }, index) =>
-            `${sql} ${"and"} ${column} ${operator} ?`,
+    db.query(
+      where.reduce(
+        (sql, { column, operator }, index) =>
+          `${sql} ${index === 0 ? "where" : "and"} ${column} ${operator} ?`,
 
-          initialSql
-        ),
+        initialSql
+      ),
 
-        where.map(({ value }) => value)
-      )
+      where.map(({ value }) => value)
+    )
 
       .then(([movies]) => {
         res.json(movies);
